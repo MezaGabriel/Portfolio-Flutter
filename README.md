@@ -7,7 +7,7 @@
 
 - 🌱 I’m currently learning **Flutter & Dart**
 
-- 👨‍💻 All of my projects are available at [https://github.com/MezaGabriel/Portfolio-Flutter](https://github.com/MezaGabriel/Portfolio-Flutter)
+- 👨‍💻 All of my projects are available at [https://github.com/MezaGabriel](https://github.com/MezaGabriel)
 
 - 📝 I regularly write articles on [https://www.linkedin.com/in/gabriel-esteban-meza-b0b175204/](https://www.linkedin.com/in/gabriel-esteban-meza-b0b175204/)
 
