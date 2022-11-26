@@ -13,9 +13,27 @@ class AppTheme {
       elevation: 0,
     ),
 
+    // Background Color
+    scaffoldBackgroundColor: Colors.tealAccent[100],
+
     // TextButton Theme
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(foregroundColor: primary),
+    ),
+
+    // FloatingActionButtons Theme
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: primary,
+      elevation: 0,
+    ),
+
+    // ElevatedButton Theme
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: primary,
+        shape: const StadiumBorder(),
+        elevation: 0,
+      ),
     ),
   );
 
@@ -30,11 +48,26 @@ class AppTheme {
     ),
 
     // Background Color
-    scaffoldBackgroundColor: Colors.black12,
+    scaffoldBackgroundColor: Colors.black,
 
     // TextButton Theme
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(foregroundColor: primary),
+    ),
+
+    // FloatingActionButtons
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: primary,
+      elevation: 0,
+    ),
+
+    // ElevatedButton Theme
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: primary,
+        shape: const StadiumBorder(),
+        elevation: 0,
+      ),
     ),
   );
 }

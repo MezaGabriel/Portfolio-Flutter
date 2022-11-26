@@ -1,19 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/theme/app_theme.dart';
 
 class CustomCardType2 extends StatelessWidget {
-  const CustomCardType2({super.key});
+  final String imageUrl;
+  final String? name;
+
+  const CustomCardType2({super.key, required this.imageUrl, this.name});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 10,
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(18),
+      ),
+      elevation: 30,
+      shadowColor: AppTheme.primary.withOpacity(0.5),
       child: Column(
-        children: const [
+        children: [
           FadeInImage(
-            image: NetworkImage(
-                'https://img.freepik.com/free-vector/nature-scene-with-river-hills-forest-mountain-landscape-flat-cartoon-style-illustration_1150-37326.jpg?w=2000'),
-            placeholder: AssetImage('assets/jar-loading.gif'),
-          )
+            image: NetworkImage(imageUrl),
+            placeholder: const AssetImage('assets/jar-loading.gif'),
+            width: double.infinity,
+            height: 230,
+            fit: BoxFit.cover,
+            fadeInDuration: const Duration(milliseconds: 300),
+          ),
+          if (name != null)
+            Container(
+              color: Colors.teal[200],
+              alignment: AlignmentDirectional.centerEnd,
+              padding: const EdgeInsets.only(right: 20, top: 10, bottom: 10),
+              child: Text(name!),
+            ),
         ],
       ),
     );
