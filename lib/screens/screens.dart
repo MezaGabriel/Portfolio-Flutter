@@ -7,3 +7,4 @@ export 'package:portfolio/screens/avatar_screen.dart';
 export 'package:portfolio/screens/animated_screen.dart';
 export 'package:portfolio/screens/inputs_screen.dart';
 export 'package:portfolio/screens/slider_screen.dart';
+export 'package:portfolio/screens/listview_builder_screen.dart';
