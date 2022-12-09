@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies/theme/app_theme.dart';
 import 'package:movies/widgets/widgets.dart';
 
 import '../models/models.dart';
@@ -16,8 +17,6 @@ class DetailsScreen extends StatelessWidget {
             delegate: SliverChildListDelegate([
               _PosterAndTitle(movie),
               _Overview(movie),
-              _Overview(movie),
-              _Overview(movie),
               CastingCards(movie.id),
             ]),
           ),
@@ -33,7 +32,7 @@ class _CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: Colors.teal,
+      backgroundColor: AppTheme.primary,
       expandedHeight: 200,
       floating: false,
       pinned: true,
@@ -78,13 +77,16 @@ class _PosterAndTitle extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: FadeInImage(
-              placeholder: AssetImage('assets/no-image.jpg'),
-              image: NetworkImage(movie.fullPosterImg),
-              height: 150,
-              width: 110,
+          Hero(
+            tag: movie.heroId!,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: FadeInImage(
+                placeholder: AssetImage('assets/no-image.jpg'),
+                image: NetworkImage(movie.fullPosterImg),
+                height: 150,
+                // width: 110,
+              ),
             ),
           ),
           const SizedBox(width: 20),

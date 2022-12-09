@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const Color primary = Colors.teal;
+  static const Color primary = Color.fromARGB(255, 49, 95, 90);
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     // Primary Color
-    primaryColor: Colors.teal,
+    primaryColor: Color.fromARGB(255, 49, 95, 90),
 
     // AppBar Theme
     appBarTheme: const AppBarTheme(
@@ -14,7 +14,7 @@ class AppTheme {
     ),
 
     // Background Color
-    scaffoldBackgroundColor: Colors.tealAccent[100],
+    scaffoldBackgroundColor: Color.fromARGB(255, 162, 216, 204),
 
     // TextButton Theme
     textButtonTheme: TextButtonThemeData(
@@ -63,7 +63,7 @@ class AppTheme {
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
     // Primary Color
-    primaryColor: Colors.teal,
+    primaryColor: Color.fromARGB(255, 49, 95, 90),
 
     // AppBar Theme
     appBarTheme: const AppBarTheme(
