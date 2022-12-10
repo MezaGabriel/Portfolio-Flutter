@@ -17,7 +17,7 @@ class ScrollScreen extends StatelessWidget {
           ),
         ),
         child: PageView(
-          physics: BouncingScrollPhysics(),
+          // physics: BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           children: [
             Page1(),
