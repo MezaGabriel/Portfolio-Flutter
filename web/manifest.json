@@ -1,6 +1,6 @@
 {
-    "name": "designs",
-    "short_name": "designs",
+    "name": "qrscanner",
+    "short_name": "qrscanner",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

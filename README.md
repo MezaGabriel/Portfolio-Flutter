@@ -1,4 +1,4 @@
-# designs
+# qrscanner
 
 A new Flutter project.
 
