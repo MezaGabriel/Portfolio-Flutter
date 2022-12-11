@@ -1,20 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qrscanner/pages/home_page.dart';
+import 'package:qrscanner/pages/map_page.dart';
+import 'package:qrscanner/providers/ui_provider.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => new UiProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'QR Reader',
+        initialRoute: 'home',
+        routes: {
+          'home': (_) => HomePage(),
+          'map': (_) => MapPage(),
+        },
+        theme: ThemeData(
+          primarySwatch: Colors.deepPurple,
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: Colors.deepPurple,
+          ),
         ),
       ),
     );
