@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:qrscanner/pages/direction_page.dart';
 import 'package:qrscanner/pages/maps_page.dart';
 import 'package:qrscanner/providers/db_provider.dart';
+import 'package:qrscanner/providers/scan_list_provider.dart';
 import 'package:qrscanner/providers/ui_provider.dart';
 import 'package:qrscanner/widgets/custom_navigator.dart';
 import 'package:qrscanner/widgets/scan_button.dart';
@@ -15,7 +16,13 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         title: Text('History'),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.delete_forever)),
+          IconButton(
+              onPressed: () {
+                final scanListProvider =
+                    Provider.of<ScanListProvider>(context, listen: false)
+                        .deleteAll();
+              },
+              icon: Icon(Icons.delete_forever)),
         ],
       ),
       body: _HomePageBody(),
@@ -33,14 +40,16 @@ class _HomePageBody extends StatelessWidget {
 
     final currentIndex = uiProvider.selectedMenuOpt;
 
-    // final tempScan = new ScanModel(value: 'https://google,com');
-    DBProvider.db.deleteAllScans().then(print);
+    final scanListProvider =
+        Provider.of<ScanListProvider>(context, listen: false);
 
     switch (currentIndex) {
       case 0:
+        scanListProvider.loadTypeScans('geo');
         return MapsPage();
 
       case 1:
+        scanListProvider.loadTypeScans('http');
         return DirectionPage();
 
       default:
