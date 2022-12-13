@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:provider/provider.dart';
 import 'package:qrscanner/providers/scan_list_provider.dart';
+import 'package:qrscanner/utils/utils.dart';
 
 class ScanButton extends StatelessWidget {
   @override
@@ -15,9 +16,15 @@ class ScanButton extends StatelessWidget {
           false,
           ScanMode.QR,
         );
+
+        if (barcodeScanRes == '-1') {
+          return;
+        }
+
         final scanListProvider =
             Provider.of<ScanListProvider>(context, listen: false);
-        scanListProvider.newScan(barcodeScanRes);
+        final newScan = await scanListProvider.newScan(barcodeScanRes);
+        launchUrl(context, newScan);
       },
       child: Icon(Icons.filter_center_focus),
     );
