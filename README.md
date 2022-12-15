@@ -1,4 +1,4 @@
-# qrscanner
+# userpreferences
 
 A new Flutter project.
 

@@ -1,4 +1,4 @@
-package com.example.qrscanner
+package com.example.userpreferences
 
 import io.flutter.embedding.android.FlutterActivity
 
