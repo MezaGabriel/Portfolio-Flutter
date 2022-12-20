@@ -1,4 +1,4 @@
-package com.example.userpreferences
+package com.example.products
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,4 +1,4 @@
-# userpreferences
+# products
 
 A new Flutter project.
 

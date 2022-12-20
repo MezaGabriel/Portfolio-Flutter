@@ -1,6 +1,6 @@
 {
-    "name": "userpreferences",
-    "short_name": "userpreferences",
+    "name": "products",
+    "short_name": "products",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
