@@ -15,6 +15,16 @@ class ProductCard extends StatelessWidget {
           children: [
             _backgroundImage(),
             _productDetails(),
+            Positioned(
+              top: 0,
+              right: 0,
+              child: _priceTag(),
+            ),
+            Positioned(
+              top: 0,
+              left: 0,
+              child: _notAvailable(),
+            ),
           ],
         ),
       ),
@@ -36,6 +46,61 @@ class ProductCard extends StatelessWidget {
   }
 }
 
+class _notAvailable extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: FittedBox(
+        fit: BoxFit.contain,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Text(
+            'Not Available',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+        ),
+      ),
+      width: 100,
+      height: 70,
+      decoration: BoxDecoration(
+        color: Colors.yellow[800],
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(25),
+          bottomRight: Radius.circular(25),
+        ),
+      ),
+    );
+  }
+}
+
+class _priceTag extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: FittedBox(
+        fit: BoxFit.contain,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Text(
+            '\$103.99',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+        ),
+      ),
+      width: 100,
+      height: 70,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: Colors.indigo,
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(25),
+          bottomLeft: Radius.circular(25),
+        ),
+      ),
+    );
+  }
+}
+
 class _productDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -45,7 +110,7 @@ class _productDetails extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         width: double.infinity,
         height: 70,
-        color: Colors.red,
+        decoration: _buildBoxDecoration(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -57,12 +122,25 @@ class _productDetails extends StatelessWidget {
                   fontWeight: FontWeight.bold),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-            )
+            ),
+            Text(
+              'HardDisk G',
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+
+  BoxDecoration _buildBoxDecoration() => BoxDecoration(
+        color: Colors.indigo,
+        borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(25), topRight: Radius.circular(25)),
+      );
 }
 
 class _backgroundImage extends StatelessWidget {
