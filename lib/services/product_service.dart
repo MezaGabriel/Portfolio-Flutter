@@ -8,6 +8,7 @@ import '../models/models.dart';
 class ProductService extends ChangeNotifier {
   final String _baseUrl = 'flutter-varios-bee0a-default-rtdb.firebaseio.com';
   final List<Product> products = [];
+  late Product? selectedProduct;
 
   bool isLoading = true;
 
@@ -16,6 +17,9 @@ class ProductService extends ChangeNotifier {
   }
 
   Future loadProducts() async {
+    this.isLoading = true;
+    notifyListeners();
+
     final url = Uri.https(_baseUrl, 'products.json');
     final resp = await http.get(url);
 
@@ -26,5 +30,10 @@ class ProductService extends ChangeNotifier {
       tempProduct.id = key;
       this.products.add(tempProduct);
     });
+
+    this.isLoading = false;
+    notifyListeners();
+
+    return this.products;
   }
 }

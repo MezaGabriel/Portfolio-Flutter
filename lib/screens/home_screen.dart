@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:products/screens/screens.dart';
 import 'package:products/services/services.dart';
 import 'package:products/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -7,15 +8,23 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productService = Provider.of<ProductService>(context);
+
+    if (productService.isLoading) return LoadingScreen();
     return Scaffold(
       appBar: AppBar(
         title: Text('Products'),
       ),
       body: ListView.builder(
-        itemCount: 10,
+        itemCount: productService.products.length,
         itemBuilder: (BuildContext context, int index) => GestureDetector(
-          onTap: () => Navigator.pushNamed(context, 'product'),
-          child: ProductCard(),
+          onTap: () {
+            productService.selectedProduct =
+                productService.products[index].copy();
+            Navigator.pushNamed(context, 'product');
+          },
+          child: ProductCard(
+            product: productService.products[index],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

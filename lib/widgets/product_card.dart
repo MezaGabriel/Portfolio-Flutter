@@ -1,30 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:products/models/models.dart';
 
 class ProductCard extends StatelessWidget {
+  final Product product;
+  const ProductCard({super.key, required this.product});
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
-        margin: EdgeInsets.only(top: 30, bottom: 50),
+        margin: const EdgeInsets.only(top: 30, bottom: 50),
         width: double.infinity,
         height: 400,
         decoration: _cardBorders(),
         child: Stack(
           alignment: Alignment.bottomLeft,
           children: [
-            _backgroundImage(),
-            _productDetails(),
+            _backgroundImage(product.picture),
+            _productDetails(
+              title: product.name,
+              subtitle: product.id!,
+            ),
             Positioned(
               top: 0,
               right: 0,
-              child: _priceTag(),
+              child: _priceTag(product.price),
             ),
-            Positioned(
-              top: 0,
-              left: 0,
-              child: _notAvailable(),
-            ),
+            if (product.available)
+              Positioned(
+                top: 0,
+                left: 0,
+                child: _notAvailable(),
+              ),
           ],
         ),
       ),
@@ -33,10 +40,9 @@ class ProductCard extends StatelessWidget {
 
   BoxDecoration _cardBorders() {
     return BoxDecoration(
-      color: Colors.red,
       borderRadius: BorderRadius.circular(25),
       boxShadow: [
-        BoxShadow(
+        const BoxShadow(
           color: Colors.black12,
           offset: Offset(0, 7),
           blurRadius: 10,
@@ -50,7 +56,7 @@ class _notAvailable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: FittedBox(
+      child: const FittedBox(
         fit: BoxFit.contain,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),
@@ -64,7 +70,7 @@ class _notAvailable extends StatelessWidget {
       height: 70,
       decoration: BoxDecoration(
         color: Colors.yellow[800],
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(25),
           bottomRight: Radius.circular(25),
         ),
@@ -74,23 +80,26 @@ class _notAvailable extends StatelessWidget {
 }
 
 class _priceTag extends StatelessWidget {
+  final double price;
+
+  const _priceTag(this.price);
   @override
   Widget build(BuildContext context) {
     return Container(
       child: FittedBox(
         fit: BoxFit.contain,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            '\$103.99',
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            '\$$price',
+            style: const TextStyle(color: Colors.white, fontSize: 20),
           ),
         ),
       ),
       width: 100,
       height: 70,
       alignment: Alignment.center,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.indigo,
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(25),
@@ -102,12 +111,16 @@ class _priceTag extends StatelessWidget {
 }
 
 class _productDetails extends StatelessWidget {
+  final String title;
+  final String subtitle;
+
+  const _productDetails({required this.title, required this.subtitle});
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 50),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         width: double.infinity,
         height: 70,
         decoration: _buildBoxDecoration(),
@@ -115,8 +128,8 @@ class _productDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'HardDisk G',
-              style: TextStyle(
+              title,
+              style: const TextStyle(
                   fontSize: 20,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
@@ -124,8 +137,8 @@ class _productDetails extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             Text(
-              'HardDisk G',
-              style: TextStyle(
+              subtitle,
+              style: const TextStyle(
                 fontSize: 15,
                 color: Colors.white,
               ),
@@ -136,7 +149,7 @@ class _productDetails extends StatelessWidget {
     );
   }
 
-  BoxDecoration _buildBoxDecoration() => BoxDecoration(
+  BoxDecoration _buildBoxDecoration() => const BoxDecoration(
         color: Colors.indigo,
         borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(25), topRight: Radius.circular(25)),
@@ -144,6 +157,10 @@ class _productDetails extends StatelessWidget {
 }
 
 class _backgroundImage extends StatelessWidget {
+  final String? url;
+
+  const _backgroundImage(this.url);
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -151,11 +168,16 @@ class _backgroundImage extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 400,
-        child: FadeInImage(
-          placeholder: AssetImage('assets/jar-loading.gif'),
-          image: NetworkImage('https://via.placeholder.com/400x300/f6f6f6'),
-          fit: BoxFit.cover,
-        ),
+        child: url == null
+            ? const Image(
+                image: AssetImage('assets/no-image.png'),
+                fit: BoxFit.cover,
+              )
+            : FadeInImage(
+                placeholder: const AssetImage('assets/jar-loading.gif'),
+                image: NetworkImage(url!),
+                fit: BoxFit.cover,
+              ),
       ),
     );
   }
