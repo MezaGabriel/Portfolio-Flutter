@@ -3,6 +3,7 @@ import 'package:products/providers/login_form_provider.dart';
 import 'package:products/ui/input_decorations.dart';
 import 'package:provider/provider.dart';
 
+import '../services/services.dart';
 import '../widgets/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -116,14 +117,22 @@ class _loginForm extends StatelessWidget {
                   ? null
                   : () async {
                       FocusScope.of(context).unfocus();
+                      final authService =
+                          Provider.of<AuthService>(context, listen: false);
 
                       if (!loginForm.isValidForm()) return;
-
                       loginForm.isLoading = true;
 
-                      await Future.delayed(Duration(seconds: 2));
+                      final String? errorMessage = await authService.login(
+                          loginForm.email, loginForm.password);
 
-                      Navigator.pushReplacementNamed(context, 'home');
+                      if (errorMessage == null) {
+                        Navigator.pushReplacementNamed(context, 'home');
+                      } else {
+                        //Show error
+                        print(errorMessage);
+                        loginForm.isLoading = false;
+                      }
                     },
             )
           ],
