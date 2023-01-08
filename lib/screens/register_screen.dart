@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:products/providers/login_form_provider.dart';
+import 'package:products/services/services.dart';
 import 'package:products/ui/input_decorations.dart';
 import 'package:provider/provider.dart';
 
@@ -117,13 +118,16 @@ class _loginForm extends StatelessWidget {
                   ? null
                   : () async {
                       FocusScope.of(context).unfocus();
+                      final authService =
+                          Provider.of<AuthService>(context, listen: false);
 
                       if (!loginForm.isValidForm()) return;
-
                       loginForm.isLoading = true;
 
-                      await Future.delayed(Duration(seconds: 2));
+                      final String? token = await authService.createUser(
+                          loginForm.email, loginForm.password);
 
+                      loginForm.isLoading = false;
                       Navigator.pushReplacementNamed(context, 'home');
                     },
             )
