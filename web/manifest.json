@@ -1,6 +1,6 @@
 {
-    "name": "products",
-    "short_name": "products",
+    "name": "notifications",
+    "short_name": "notifications",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
