@@ -1,4 +1,4 @@
-package com.gabrielmeza.notifications
+package com.example.newsapp
 
 import io.flutter.embedding.android.FlutterActivity
 

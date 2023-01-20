@@ -1,4 +1,4 @@
-# notifications
+# newsapp
 
 A new Flutter project.
 
