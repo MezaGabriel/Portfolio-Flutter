@@ -1,4 +1,4 @@
-package com.example.newsapp
+package com.example.mapbox
 
 import io.flutter.embedding.android.FlutterActivity
 
