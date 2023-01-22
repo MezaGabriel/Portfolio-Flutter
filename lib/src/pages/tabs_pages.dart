@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/src/pages/tab1_page.dart';
+import 'package:newsapp/src/pages/tab2_page.dart';
 import 'package:newsapp/src/services/news_service.dart';
 import 'package:provider/provider.dart';
 
@@ -26,8 +27,8 @@ class _Navigation extends StatelessWidget {
       onTap: (i) => navigationModel.actualPage = i,
       items: [
         BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline), label: 'For you'),
-        BottomNavigationBarItem(icon: Icon(Icons.public), label: 'For you'),
+            icon: Icon(Icons.person_outline), label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.public), label: 'Categories'),
       ],
     );
   }
@@ -43,9 +44,7 @@ class _Pages extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
         Tab1Page(),
-        Container(
-          color: Colors.green,
-        ),
+        Tab2Page(),
       ],
     );
   }
