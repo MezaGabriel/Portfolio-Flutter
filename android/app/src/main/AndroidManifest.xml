@@ -4,6 +4,7 @@
         android:label="mapbox"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.mapbox.token" android:value="sk.eyJ1IjoibWV6YWdhYnJpZWwiLCJhIjoiY2xkN3FhNHhoMG5xMjN2cmlqd3M3b3QyZyJ9.n31VI_riM1CfiXwmFIM77g" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
